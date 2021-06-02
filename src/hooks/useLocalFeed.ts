@@ -3,13 +3,13 @@ import { opmlToJsonResult } from "opml-to-json";
 
 import { useOPMLReader } from "./useOPMLReader";
 
-import feedsOPML from "../../frontend-feeds/frontend-feeds.xml";
+import file from "../../demoData/frontend-rss-feeds.xml"; // if pulling from
 
 export const useLocalFeed = (): opmlToJsonResult => {
   const [feeds, setFeeds] = useState<opmlToJsonResult>();
 
   useEffect(() => {
-    useOPMLReader(feedsOPML).then(res => setFeeds(res));
+    useOPMLReader(file).then(res => setFeeds(res));
   }, []);
 
   return feeds;
