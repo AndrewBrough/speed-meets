@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type { FC } from "react";
 
 import { useFeedsFetcher, useTitleUpdate } from "./hooks";
-import { useLocalFeed } from "./hooks/useLocalFeed";
 
 import { Feeds } from "./scenes/Feeds/Feeds";
 
