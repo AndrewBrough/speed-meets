@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import type { FC } from "react";
 
-import { useTitleUpdate } from "./hooks";
+import { useFeedsFetcher, useTitleUpdate } from "./hooks";
 import { useLocalFeed } from "./hooks/useLocalFeed";
 
 import { Feeds } from "./scenes/Feeds/Feeds";
 
 const EntryPoint: FC = () => {
   useTitleUpdate();
-  const feeds = useLocalFeed();
+  const feeds = useFeedsFetcher();
 
   if (!feeds) return null;
 
