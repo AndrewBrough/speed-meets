@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useOPMLReader } from "./useOPMLReader";
+import { opmlToJsonResult } from "opml-to-json";
 
-import { OPMLItem, OPMLParent } from "../types/OPML";
+import { useOPMLReader } from "./useOPMLReader";
 
 import feedsOPML from "../../frontend-feeds/frontend-feeds.xml";
 
-export type FeedType = null | (OPMLParent | OPMLItem)[];
-export const useLocalFeed = (): FeedType => {
-  const [feeds, setFeeds] = useState<FeedType>();
+export const useLocalFeed = (): opmlToJsonResult => {
+  const [feeds, setFeeds] = useState<opmlToJsonResult>();
 
   useEffect(() => {
-    useOPMLReader(feedsOPML).then(res => setFeeds(res.children));
+    useOPMLReader(feedsOPML).then(res => setFeeds(res));
   }, []);
 
   return feeds;
