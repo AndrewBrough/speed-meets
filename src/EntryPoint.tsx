@@ -14,8 +14,8 @@ const EntryPoint: FC = () => {
   console.log(feeds);
 
   return (
-    <main>
-      <h1>Feeds!</h1>
+    <main style={{ background: "lightgrey", padding: "1rem" }}>
+      <h1>FED Feed</h1>
       <Feeds feeds={feeds} />
     </main>
   );

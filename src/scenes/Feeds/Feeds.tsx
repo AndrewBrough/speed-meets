@@ -1,3 +1,4 @@
+import { Box } from "@fluentui/react-northstar";
 import { opmlToJsonResult } from "opml-to-json";
 import React, { FC } from "react";
 
@@ -11,10 +12,10 @@ interface Props {
 export const Feeds: FC<Props> = ({ feeds }) => {
   const renderParent = (item: OPMLParent) => {
     return (
-      <div key={item.title.toString()}>
+      <Box key={item.title.toString()}>
         <h3>{item.title}</h3>
         {renderFeeds(item.children)}
-      </div>
+      </Box>
     );
   };
 
@@ -24,7 +25,7 @@ export const Feeds: FC<Props> = ({ feeds }) => {
   };
 
   const renderFeeds = children => {
-    return children?.map((item: OPMLParent | OPMLListing) => {
+    return children?.slice(0, 1).map((item: OPMLParent | OPMLListing) => {
       if (item.hasOwnProperty("children")) {
         return renderParent(item as OPMLParent);
       } else if (item.hasOwnProperty("htmlurl")) {

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useFeedsFetcher } from "../../hooks";
 import { OPMLListing } from "../../types/OPML";
 
 interface Props {
@@ -6,6 +7,10 @@ interface Props {
 }
 
 const FeedListing: FC<Props> = ({ listing }) => {
+  const feed = useFeedsFetcher(listing.xmlurl);
+
+  console.log(feed);
+
   return (
     <div>
       <a href={listing.htmlurl}>
