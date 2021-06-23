@@ -1,7 +1,4 @@
-import React, { FC, useEffect } from "react";
-import { useState } from "react";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { LocalStorageKeys } from "../../types/localStorageKeys";
+import React, { FC } from "react";
 
 interface Props {
   nameList: string[];
