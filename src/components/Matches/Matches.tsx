@@ -6,35 +6,67 @@ interface Props {
 }
 
 const Matches: FC<Props> = ({ nameList }) => {
-  const [shuffledNames, setShuffledNames] = useState<string[]>([]);
+  const [matches, setMatches] = useState<string[][]>([]);
 
-  const getMatch1 = () => {
+  const getNewMatches = matchCount => {
+    if (matches.length > 0 && matchCount > matches.length * matches.length) {
+      alert(
+        "Couldn't find any more matches. Find more people or come back later. I think we're all tired."
+      );
+      return [];
+    }
+
+    const set = shuffle(nameList.filter(name => name !== ""));
+    const matchArray = [];
+    set.forEach((name, i) => {
+      if (i % 2 !== 0) {
+        matchArray[matchArray.length - 1].push(name);
+        matchArray[matchArray.length - 1].sort();
+      } else {
+        matchArray[matchArray.length] = [name];
+      }
+    });
+    matchArray.sort();
+
+    const exists = matches.find(match => {
+      if (JSON.stringify(match) === JSON.stringify(matchArray)) return true;
+      return false;
+    });
+
+    if (exists) {
+      console.log("found a dupe");
+      matchCount++;
+      return getNewMatches(matchCount);
+    }
+    return matchArray;
+  };
+
+  const getNewMatch = () => {
     if (nameList.length > 2) {
-      setShuffledNames(shuffle(nameList));
+      setMatches([...matches, getNewMatches(0)]);
     } else {
       alert("You need at least two people to get matches");
     }
   };
 
-  const renderMatches = () => {
-    if (!nameList) return null;
-    const matchArray = [];
-    shuffledNames
-      .filter(name => name !== "")
-      .forEach((name, i) => {
-        if (i % 2 !== 0) {
-          matchArray[matchArray.length - 1] += ` + ${name}`;
-        } else {
-          matchArray[matchArray.length] = name;
-        }
-      });
-    return matchArray.map(names => <p>{names}</p>);
+  const renderMatches = (matchSet, matchIndex) => {
+    return (
+      <li key={`match-${matchIndex}`}>
+        <div>
+          {matchSet.map(names => (
+            <p key={names}>{names.join(" + ")}</p>
+          ))}
+        </div>
+      </li>
+    );
   };
+
+  console.log(matches);
 
   return (
     <div>
-      <button onClick={getMatch1}>Match!</button>
-      {renderMatches()}
+      <button onClick={getNewMatch}>Match!</button>
+      <ol>{matches.map((matches, matchIndex) => renderMatches(matches, matchIndex))}</ol>
     </div>
   );
 };
