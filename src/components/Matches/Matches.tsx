@@ -28,7 +28,7 @@ const Matches: FC<Props> = ({ nameList }) => {
           matchArray[matchArray.length] = name;
         }
       });
-    return matchArray.join(", ");
+    return matchArray.map(names => <p>{names}</p>);
   };
 
   return (
