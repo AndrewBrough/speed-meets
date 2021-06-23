@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { FC } from "react";
 
+import { Matches } from "./components/Matches";
 import { NameList } from "./components/NameList";
 import { ClearButton } from "./components/ClearButton";
 import { useLocalStorage } from "./hooks/useLocalStorage";
@@ -30,6 +31,7 @@ const EntryPoint: FC = () => {
     <main>
       <NameList nameList={nameList} setNameList={setNameList} />
       <ClearButton setNameList={setNameList} />
+      <Matches nameList={nameList} />
     </main>
   );
 };
