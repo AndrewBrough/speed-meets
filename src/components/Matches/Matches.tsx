@@ -27,7 +27,12 @@ const Matches: FC<Props> = ({ nameList }) => {
       }
     });
     matchArray.sort();
+    matchArray.sort((a, b) => {
+      if (a.length > b.length) return 1;
+      return 0;
+    });
 
+    // this needs to be more robust to compare each set in each array
     const exists = matches.find(match => {
       if (JSON.stringify(match) === JSON.stringify(matchArray)) return true;
       return false;
@@ -60,8 +65,6 @@ const Matches: FC<Props> = ({ nameList }) => {
       </li>
     );
   };
-
-  console.log(matches);
 
   return (
     <div>

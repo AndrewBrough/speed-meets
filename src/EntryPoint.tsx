@@ -29,8 +29,9 @@ const EntryPoint: FC = () => {
 
   return (
     <main>
-      <p>Enter names into fields below then click match to get a set of matches.</p>
-      <p>Currently does not guarantee matches are not duplicated.</p>
+      <p>Enter names into fields below, then click the `Match!` button below.</p>
+      <p>Each click gives a new unique match set.</p>
+      <p>Don't worry, UI update coming soon.</p>
       <NameList nameList={nameList} setNameList={setNameList} />
       <ClearButton setNameList={setNameList} />
       <Matches nameList={nameList} />
