@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "prod-build": "parcel build index.html --public-url ./speed-meets --out-dir public",
+    "prod-build": "parcel build index.html --out-dir public",
     "deploy": "git subtree push --prefix public origin gh-pages"
   },
   "browserslist": [
