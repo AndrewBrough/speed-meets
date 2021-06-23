@@ -1,23 +1,14 @@
 import React, { FC, useEffect } from "react";
 import { useState } from "react";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { LocalStorageKeys } from "../../types/localStorageKeys";
 
-const NameList: FC = () => {
-  const [nameList, setNameList] = useState<string[]>([""]);
+interface Props {
+  nameList: string[];
+  setNameList: (values: string[]) => void;
+}
 
-  useEffect(() => {
-    if (nameList[nameList.length - 1] !== "") {
-      setNameList([...nameList, ""]);
-    } else if (nameList.length > 1) {
-      const lastTwo = nameList.slice(nameList.length - 2, nameList.length);
-      console.log(lastTwo);
-      if (lastTwo.every(name => name === "")) {
-        const newList = [...nameList];
-        newList.pop();
-        setNameList(newList);
-      }
-    }
-  }, [nameList]);
-
+const NameList: FC<Props> = ({ nameList, setNameList }) => {
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.dataset["id"];
     const newNameList = [...nameList];
@@ -33,6 +24,7 @@ const NameList: FC = () => {
       data-id={i}
       onChange={onInputChange}
       value={nameList[i]}
+      autoFocus={i === 0}
     />
   );
 
