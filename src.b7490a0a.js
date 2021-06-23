@@ -35,4 +35,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"react":"HdMw","./components/Matches":"F9ar","./components/NameList":"h4dU","./components/ClearButton":"T1Df","./hooks/useLocalStorage":"ltuR","./types/localStorageKeys":"AOIA"}],"H99C":[function(require,module,exports) {
 "use strict";var e=n(require("react")),t=n(require("react-dom")),r=require("./EntryPoint");function n(e){return e&&e.__esModule?e:{default:e}}t.default.render(e.default.createElement(r.EntryPoint,null),document.getElementById("app"));
 },{"react":"HdMw","react-dom":"X9zx","./EntryPoint":"Ak7m"}]},{},["H99C"], null)
-//# sourceMappingURL=/src.b7490a0a.js.map
+//# sourceMappingURL=speed-meets/src.b7490a0a.js.map
