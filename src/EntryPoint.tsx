@@ -34,7 +34,7 @@ const EntryPoint: FC = () => {
       <p>Don't worry, UI update coming soon.</p>
       <NameList nameList={nameList} setNameList={setNameList} />
       <ClearButton setNameList={setNameList} />
-      <Matches nameList={nameList} />
+      <Matches nameList={nameList} key={JSON.stringify(nameList)} />
     </main>
   );
 };
