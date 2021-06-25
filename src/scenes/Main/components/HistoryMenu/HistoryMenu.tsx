@@ -1,15 +1,21 @@
 import React, { FC, useState } from "react";
 import { Button, Menu, MenuItem } from "@material-ui/core";
+
 import { useMatchHistory } from "../../../../hooks/useMatchHistory";
+
+import { useStyles } from "./HistoryMenu.styles";
 
 interface Props {
   setNameList: (values: string[]) => void;
 }
 
 const HistoryMenu: FC<Props> = ({ setNameList }) => {
+  const classes = useStyles();
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
-  const { getNamesHistory } = useMatchHistory(); // get names history
+  const { getNamesHistory, clearNamesHistory } = useMatchHistory(); // get names history
   const namesHistory = getNamesHistory();
+
+  if (!namesHistory) return null;
 
   const renderHistory = () =>
     namesHistory.map((names, i) => (
@@ -19,9 +25,15 @@ const HistoryMenu: FC<Props> = ({ setNameList }) => {
     ));
 
   const onClick = (e, item) => {
-    console.log(e, item);
     setNameList(item.split(","));
     setMenuAnchorEl(null);
+  };
+
+  const onClearClick = () => {
+    if (confirm("Are you sure? You'll forever lose your match history.")) {
+      clearNamesHistory();
+      setMenuAnchorEl(null);
+    }
   };
 
   return (
@@ -40,6 +52,9 @@ const HistoryMenu: FC<Props> = ({ setNameList }) => {
         onClose={() => setMenuAnchorEl(null)}
       >
         {renderHistory()}
+        <MenuItem onClick={onClearClick} className={classes.clearBtn}>
+          Clear history
+        </MenuItem>
       </Menu>
     </div>
   );

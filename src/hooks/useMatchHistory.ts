@@ -2,7 +2,7 @@ import { LocalStorageKeys } from "../types/localStorageKeys";
 import { useLocalStorage } from "./useLocalStorage";
 
 const useMatchHistory = () => {
-  const { getLocalStorage, setLocalStorage } = useLocalStorage();
+  const { getLocalStorage, setLocalStorage, removeLocalStorage } = useLocalStorage();
 
   const getCondensedNameList = nameList => nameList.join(",");
 
@@ -32,7 +32,12 @@ const useMatchHistory = () => {
 
   const getNamesHistory = () => getLocalStorage(LocalStorageKeys.namesHistory) as string[];
 
-  return { setMatchHistory, getMatchHistory, getNamesHistory };
+  const clearNamesHistory = () => {
+    getNamesHistory().forEach(key => removeLocalStorage(key));
+    removeLocalStorage(LocalStorageKeys.namesHistory);
+  };
+
+  return { setMatchHistory, getMatchHistory, getNamesHistory, clearNamesHistory };
 };
 
 export { useMatchHistory };

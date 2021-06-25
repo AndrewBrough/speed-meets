@@ -53,9 +53,11 @@ const NameList: FC<Props> = ({ nameList, setNameList, setMatches }) => {
             Enter names
             <HistoryMenu setNameList={setNameList} />
           </h2>
+        </div>
+        <div className={classes.inputWrapper}>
+          {renderInputList()}
           <ClearButton setNameList={setNameList} />
         </div>
-        {renderInputList()}
         <div className={classes.titleRow}>
           <h2></h2>
           <MatchButton nameList={nameList} setMatches={setMatches} />

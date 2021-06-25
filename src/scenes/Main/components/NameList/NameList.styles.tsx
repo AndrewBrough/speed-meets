@@ -17,6 +17,12 @@ const useStyles = makeStyles(theme => ({
     background: colors.white,
     padding: theme.spacing(4),
   },
+  inputWrapper: {
+    display: "flex",
+    alignItems: "baseline",
+    flexWrap: "wrap",
+  },
+
   input: {
     margin: theme.spacing(2),
     marginLeft: 0,
