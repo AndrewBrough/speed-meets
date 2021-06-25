@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import type { FC } from "react";
 import { Card, Container } from "@material-ui/core";
 
-import { Matches } from "../../components/Matches";
-import { NameList } from "../../components/NameList";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { LocalStorageKeys } from "../../types/localStorageKeys";
+
+import { Matches } from "./components/Matches";
+import { NameList } from "./components/NameList";
 import { useStyles } from "./Main.styles";
 
 const Main: FC = () => {
@@ -13,6 +14,7 @@ const Main: FC = () => {
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const loadedNames = getLocalStorage(LocalStorageKeys.nameList);
   const [nameList, setNameList] = useState<string[]>(loadedNames || [""]);
+  const [matches, setMatches] = useState<string[][]>([]);
 
   useEffect(() => {
     if (!nameList) return null;
@@ -37,11 +39,8 @@ const Main: FC = () => {
         </Container>
       </Card>
       <Container className={classes.container}>
-        <p>Enter names into fields below, then click the `Match!` button below.</p>
-        <p>Each click gives a new unique match set.</p>
-        <p>Don't worry, UI update coming soon.</p>
-        <NameList nameList={nameList} setNameList={setNameList} />
-        <Matches nameList={nameList} key={JSON.stringify(nameList)} />
+        <NameList nameList={nameList} setNameList={setNameList} setMatches={setMatches} />
+        <Matches nameList={nameList} matches={matches} key={JSON.stringify(nameList)} />
       </Container>
     </main>
   );

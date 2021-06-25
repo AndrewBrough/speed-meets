@@ -1,7 +1,8 @@
-import { Button } from "@material-ui/core";
 import React, { FC } from "react";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { LocalStorageKeys } from "../../types/localStorageKeys";
+import { Button } from "@material-ui/core";
+
+import { useLocalStorage } from "../../../../hooks/useLocalStorage";
+import { LocalStorageKeys } from "../../../../types/localStorageKeys";
 
 interface Props {
   setNameList: (values: string[]) => void;

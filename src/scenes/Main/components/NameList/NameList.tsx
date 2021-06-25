@@ -1,21 +1,23 @@
 import React, { FC } from "react";
 
-import { Grid, TextField } from "@material-ui/core";
+import { Card, Grid, TextField } from "@material-ui/core";
 
 import { ClearButton } from "../ClearButton";
+import { MatchButton } from "../MatchButton";
 
 import { useStyles } from "./NameList.styles";
 
 interface Props {
   nameList: string[];
   setNameList: (values: string[]) => void;
+  setMatches: (values: string[][]) => void;
 }
 
-const NameList: FC<Props> = ({ nameList, setNameList }) => {
+const NameList: FC<Props> = ({ nameList, setNameList, setMatches }) => {
   const classes = useStyles();
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const id = event.target.dataset["id"];
+    const id = event.target.id;
     const newNameList = [...nameList];
     newNameList[id] = event.target.value;
     setNameList(newNameList);
@@ -44,8 +46,17 @@ const NameList: FC<Props> = ({ nameList, setNameList }) => {
 
   return (
     <Grid className={classes.grid}>
-      {renderInputList()}
-      <ClearButton setNameList={setNameList} />
+      <Card className={classes.card}>
+        <div className={classes.titleRow}>
+          <h2>Enter names</h2>
+          <ClearButton setNameList={setNameList} />
+        </div>
+        {renderInputList()}
+        <div className={classes.titleRow}>
+          <h2></h2>
+          <MatchButton nameList={nameList} setMatches={setMatches} />
+        </div>
+      </Card>
     </Grid>
   );
 };

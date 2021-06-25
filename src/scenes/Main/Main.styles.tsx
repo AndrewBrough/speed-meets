@@ -4,10 +4,12 @@ import { colors } from "../../styles/colors";
 const useStyles = makeStyles(theme => ({
   main: {
     backgroundColor: colors.background,
-    height: "100vh",
+    minHeight: "100vh",
     paddingBottom: theme.spacing(4),
   },
-  container: {},
+  container: {
+    padding: theme.spacing(3),
+  },
   header: {
     backgroundColor: theme.palette.primary.main,
     color: colors.white,

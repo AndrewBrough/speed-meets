@@ -1,6 +1,8 @@
 import { shuffle } from "../helpers/shuffle";
 
 const useMatchMaker = (nameList: string[]) => {
+  nameList = nameList.filter(name => name !== "");
+
   const reduceToPairs = (values: string[]) => {
     const set = [];
     values.forEach((value, i) => {
@@ -49,7 +51,7 @@ const useMatchMaker = (nameList: string[]) => {
   };
 
   const getMatches = () => {
-    const matches = doMatching();
+    const matches = doMatching().sort();
     return matches;
   };
 
