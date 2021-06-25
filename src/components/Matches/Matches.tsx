@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import { useMatchMaker } from "../../hooks/useMatchMaker";
+import { Box, Button } from "@material-ui/core";
 
 interface Props {
   nameList: string[];
@@ -28,10 +29,12 @@ const Matches: FC<Props> = ({ nameList }) => {
   };
 
   return (
-    <div style={{ columnCount: 3 }}>
-      <button onClick={onMatchClick}>Get Matches</button>
+    <Box>
+      <Button variant="contained" color="primary" onClick={onMatchClick}>
+        Get Matches
+      </Button>
       <ol>{matches.map((matches, matchIndex) => renderMatches(matches, matchIndex))}</ol>
-    </div>
+    </Box>
   );
 };
 

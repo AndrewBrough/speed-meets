@@ -1,4 +1,4 @@
-import { hexToRgba } from "./hexToRgba";
+import { hexToRgba } from "../hexToRgba";
 import * as palette from "./palette";
 
 /*

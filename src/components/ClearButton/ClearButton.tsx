@@ -1,3 +1,4 @@
+import { Button } from "@material-ui/core";
 import React, { FC } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { LocalStorageKeys } from "../../types/localStorageKeys";
@@ -14,7 +15,11 @@ const ClearButton: FC<Props> = ({ setNameList }) => {
     removeLocalStorage(LocalStorageKeys.nameList);
   };
 
-  return <button onClick={onClick}>Clear</button>;
+  return (
+    <Button variant="contained" color="secondary" onClick={onClick}>
+      Clear all
+    </Button>
+  );
 };
 
 export { ClearButton };

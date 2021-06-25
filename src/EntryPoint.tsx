@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import type { FC } from "react";
+import { Container, ThemeProvider } from "@material-ui/core";
 
 import { Matches } from "./components/Matches";
 import { NameList } from "./components/NameList";
-import { ClearButton } from "./components/ClearButton";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { LocalStorageKeys } from "./types/localStorageKeys";
+import { materialTheme } from "./styles/materialTheme";
 
 const EntryPoint: FC = () => {
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
@@ -28,14 +29,15 @@ const EntryPoint: FC = () => {
   }, [nameList]);
 
   return (
-    <main>
-      <p>Enter names into fields below, then click the `Match!` button below.</p>
-      <p>Each click gives a new unique match set.</p>
-      <p>Don't worry, UI update coming soon.</p>
-      <NameList nameList={nameList} setNameList={setNameList} />
-      <ClearButton setNameList={setNameList} />
-      <Matches nameList={nameList} key={JSON.stringify(nameList)} />
-    </main>
+    <ThemeProvider theme={materialTheme}>
+      <Container>
+        <p>Enter names into fields below, then click the `Match!` button below.</p>
+        <p>Each click gives a new unique match set.</p>
+        <p>Don't worry, UI update coming soon.</p>
+        <NameList nameList={nameList} setNameList={setNameList} />
+        <Matches nameList={nameList} key={JSON.stringify(nameList)} />
+      </Container>
+    </ThemeProvider>
   );
 };
 
