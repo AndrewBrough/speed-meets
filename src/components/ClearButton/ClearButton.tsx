@@ -16,7 +16,7 @@ const ClearButton: FC<Props> = ({ setNameList }) => {
   };
 
   return (
-    <Button variant="contained" color="secondary" onClick={onClick}>
+    <Button variant="outlined" color="secondary" onClick={onClick}>
       Clear all
     </Button>
   );

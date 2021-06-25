@@ -9,6 +9,12 @@ const materialTheme = createMuiTheme({
     secondary: {
       main: colors.blue.darkFamily.normal,
     },
+    warning: {
+      main: colors.orange.base,
+    },
+    error: {
+      main: colors.red.base,
+    },
   },
 });
 
