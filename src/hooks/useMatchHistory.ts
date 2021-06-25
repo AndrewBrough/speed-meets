@@ -24,11 +24,15 @@ const useMatchHistory = () => {
   };
 
   const saveKey = condensedNameList => {
-    const keys = getLocalStorage(LocalStorageKeys.namesHistory) || [];
-    setLocalStorage(LocalStorageKeys.namesHistory, [...keys, condensedNameList]);
+    const keys: string[] = getLocalStorage(LocalStorageKeys.namesHistory) || [];
+    if (keys.includes(condensedNameList) == false) {
+      setLocalStorage(LocalStorageKeys.namesHistory, [...keys, condensedNameList]);
+    }
   };
 
-  return { setMatchHistory, getMatchHistory };
+  const getNamesHistory = () => getLocalStorage(LocalStorageKeys.namesHistory) as string[];
+
+  return { setMatchHistory, getMatchHistory, getNamesHistory };
 };
 
 export { useMatchHistory };

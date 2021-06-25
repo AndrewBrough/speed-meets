@@ -6,6 +6,7 @@ import { ClearButton } from "../ClearButton";
 import { MatchButton } from "../MatchButton";
 
 import { useStyles } from "./NameList.styles";
+import { HistoryMenu } from "../HistoryMenu";
 
 interface Props {
   nameList: string[];
@@ -48,7 +49,10 @@ const NameList: FC<Props> = ({ nameList, setNameList, setMatches }) => {
     <Grid className={classes.grid}>
       <Card className={classes.card}>
         <div className={classes.titleRow}>
-          <h2>Enter names</h2>
+          <h2>
+            Enter names
+            <HistoryMenu setNameList={setNameList} />
+          </h2>
           <ClearButton setNameList={setNameList} />
         </div>
         {renderInputList()}
