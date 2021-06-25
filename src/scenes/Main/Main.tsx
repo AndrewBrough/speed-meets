@@ -32,6 +32,7 @@ const Main: FC = () => {
       }
     }
     setLocalStorage(LocalStorageKeys.nameList, nameList);
+    setMatches(getMatchHistory(nameList) || []);
   }, [nameList]);
 
   return (

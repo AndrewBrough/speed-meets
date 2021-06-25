@@ -21,7 +21,7 @@ const MatchButton: FC<Props> = ({ nameList, setMatches }) => {
 
   return (
     <Button variant="contained" color="primary" size="large" onClick={onMatchClick}>
-      Get Matches
+      Get new matches
     </Button>
   );
 };
