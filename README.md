@@ -6,7 +6,9 @@ This app is designed to help facilitate Speed Meets at FS.
 
 1. accept a list of names [X]
 2. match people with a unique match every time a button is clicked [X]
-3. track old matches
+3. track old matches [X]
+4. copy/paste matches, entire list
+5. replace and delete names from generated matches
 
 # Approach
 
