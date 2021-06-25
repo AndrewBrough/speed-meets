@@ -8,13 +8,16 @@ import { LocalStorageKeys } from "../../types/localStorageKeys";
 import { Matches } from "./components/Matches";
 import { NameList } from "./components/NameList";
 import { useStyles } from "./Main.styles";
+import { useMatchHistory } from "../../hooks/useMatchHistory";
 
 const Main: FC = () => {
   const classes = useStyles();
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const loadedNames = getLocalStorage(LocalStorageKeys.nameList);
   const [nameList, setNameList] = useState<string[]>(loadedNames || [""]);
-  const [matches, setMatches] = useState<string[][]>([]);
+  const { getHistory } = useMatchHistory();
+  const loadedMatches = loadedNames ? getHistory(loadedNames) : [];
+  const [matches, setMatches] = useState<string[][]>(loadedMatches || []);
 
   useEffect(() => {
     if (!nameList) return null;
