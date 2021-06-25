@@ -1,23 +1,34 @@
+import { LocalStorageKeys } from "../types/localStorageKeys";
 import { useLocalStorage } from "./useLocalStorage";
 
 const useMatchHistory = () => {
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
 
-  const getHistoryKeyName = nameList => `history.${nameList.join(",")}`;
+  const getCondensedNameList = nameList => nameList.join(",");
 
-  const setHistory = (nameList, matches) => {
+  const getMatchHistoryKeyName = nameList =>
+    `${LocalStorageKeys.matchHistory}.${getCondensedNameList(nameList)}`;
+
+  const setMatchHistory = (nameList, matches) => {
     const data = JSON.stringify(matches);
-    setLocalStorage(getHistoryKeyName(nameList), data);
+    const key = getMatchHistoryKeyName(nameList);
+    setLocalStorage(key, data);
+    saveKey(getCondensedNameList(nameList));
   };
 
-  const getHistory = nameList => {
-    const key = getHistoryKeyName(nameList);
+  const getMatchHistory = nameList => {
+    const key = getMatchHistoryKeyName(nameList);
     const json = getLocalStorage(key);
     const data = JSON.parse(json);
     return data;
   };
 
-  return { setHistory, getHistory };
+  const saveKey = condensedNameList => {
+    const keys = getLocalStorage(LocalStorageKeys.namesHistory) || [];
+    setLocalStorage(LocalStorageKeys.namesHistory, [...keys, condensedNameList]);
+  };
+
+  return { setMatchHistory, getMatchHistory };
 };
 
 export { useMatchHistory };

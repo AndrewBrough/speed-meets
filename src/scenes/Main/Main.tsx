@@ -15,8 +15,8 @@ const Main: FC = () => {
   const { getLocalStorage, setLocalStorage } = useLocalStorage();
   const loadedNames = getLocalStorage(LocalStorageKeys.nameList);
   const [nameList, setNameList] = useState<string[]>(loadedNames || [""]);
-  const { getHistory } = useMatchHistory();
-  const loadedMatches = loadedNames ? getHistory(loadedNames) : [];
+  const { getMatchHistory } = useMatchHistory();
+  const loadedMatches = loadedNames ? getMatchHistory(loadedNames) : [];
   const [matches, setMatches] = useState<string[][]>(loadedMatches || []);
 
   useEffect(() => {

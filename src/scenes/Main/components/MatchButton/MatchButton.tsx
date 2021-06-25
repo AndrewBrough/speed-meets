@@ -11,11 +11,11 @@ interface Props {
 
 const MatchButton: FC<Props> = ({ nameList, setMatches }) => {
   const { getMatches } = useMatchMaker(nameList);
-  const { setHistory } = useMatchHistory();
+  const { setMatchHistory } = useMatchHistory();
 
   const onMatchClick = () => {
     const matches = getMatches();
-    setHistory(nameList, matches);
+    setMatchHistory(nameList, matches);
     setMatches(matches);
   };
 

@@ -1,6 +1,7 @@
 enum LocalStorageKeys {
   nameList = "nameList",
-  history = "history",
+  matchHistory = "matchHistory",
+  namesHistory = "namesHistory",
 }
 
 export { LocalStorageKeys };
