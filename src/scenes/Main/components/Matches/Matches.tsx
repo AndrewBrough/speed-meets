@@ -1,7 +1,6 @@
-import React, { FC, useState } from "react";
-import { Box, Card, Grid } from "@material-ui/core";
-
-import { useMatchMaker } from "../../../../hooks/useMatchMaker";
+import React, { FC } from "react";
+import { Accordion, AccordionSummary, AccordionDetails, Box, Grid } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { useStyles } from "./Matches.styles";
 
@@ -16,12 +15,20 @@ const Matches: FC<Props> = ({ nameList, matches }) => {
   const renderSet = (matchSet, matchIndex) => {
     return (
       <Grid item xs={12} md={4}>
-        <Card className={classes.card}>
-          <h3>Match #{matchIndex + 1}</h3>
-          {matchSet.map(names => (
-            <p key={names}>{names.join(" + ")}</p>
-          ))}
-        </Card>
+        <Accordion defaultExpanded className={classes.accordion}>
+          <AccordionSummary className={classes.accordionSummary} expandIcon={<ExpandMoreIcon />}>
+            <h3>Match #{matchIndex + 1}</h3>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div>
+              {matchSet.map(names => (
+                <p key={names} className={classes.pair}>
+                  {names.join(" + ")}
+                </p>
+              ))}
+            </div>
+          </AccordionDetails>
+        </Accordion>
       </Grid>
     );
   };

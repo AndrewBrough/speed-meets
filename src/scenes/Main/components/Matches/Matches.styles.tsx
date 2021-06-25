@@ -1,15 +1,27 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-import { colors } from "../../../../styles/colors";
-
 const useStyles = makeStyles(theme => ({
   box: {
     marginBottom: theme.spacing(4),
   },
-  card: {
-    width: "auto",
-    padding: theme.spacing(4),
-    backgroundColor: colors.backgroundWhite,
+  accordion: {
+    padding: theme.spacing(1),
+  },
+  accordionSummary: {
+    "& div": {
+      margin: "0!important",
+    },
+    "& h3": {
+      margin: "0",
+    },
+  },
+  pair: {
+    "&:first-of-type": {
+      marginTop: 0,
+    },
+    "&:last-of-type": {
+      marginBottom: 0,
+    },
   },
 }));
 
