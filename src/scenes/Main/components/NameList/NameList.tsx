@@ -7,15 +7,11 @@ import { MatchButton } from "../MatchButton";
 
 import { useStyles } from "./NameList.styles";
 import { HistoryMenu } from "../HistoryMenu";
+import { useMatchData } from "../../../../data/MatchContext/useMatchContext";
 
-interface Props {
-  nameList: string[];
-  setNameList: (values: string[]) => void;
-  setMatches: (values: string[][]) => void;
-}
-
-const NameList: FC<Props> = ({ nameList, setNameList, setMatches }) => {
+const NameList: FC = () => {
   const classes = useStyles();
+  const { nameList, setNameList } = useMatchData();
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const id = event.target.id;
@@ -51,16 +47,15 @@ const NameList: FC<Props> = ({ nameList, setNameList, setMatches }) => {
         <div className={classes.titleRow}>
           <h2>
             Enter names
-            <HistoryMenu setNameList={setNameList} />
+            <HistoryMenu />
           </h2>
         </div>
         <div className={classes.inputWrapper}>
           {renderInputList()}
-          <ClearButton setNameList={setNameList} />
+          <ClearButton />
         </div>
-        <div className={classes.titleRow}>
-          <h2></h2>
-          <MatchButton nameList={nameList} setMatches={setMatches} />
+        <div className={classes.actionRow}>
+          <MatchButton />
         </div>
       </Card>
     </Grid>

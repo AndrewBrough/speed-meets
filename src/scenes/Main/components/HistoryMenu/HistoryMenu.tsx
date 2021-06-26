@@ -4,16 +4,14 @@ import { Button, Menu, MenuItem } from "@material-ui/core";
 import { useMatchHistory } from "../../../../hooks/useMatchHistory";
 
 import { useStyles } from "./HistoryMenu.styles";
+import { useMatchData } from "../../../../data/MatchContext/useMatchContext";
 
-interface Props {
-  setNameList: (values: string[]) => void;
-}
-
-const HistoryMenu: FC<Props> = ({ setNameList }) => {
+const HistoryMenu: FC = () => {
   const classes = useStyles();
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
   const { getNamesHistory, clearNamesHistory } = useMatchHistory(); // get names history
   const namesHistory = getNamesHistory();
+  const { setNameList } = useMatchData();
 
   if (!namesHistory) return null;
 

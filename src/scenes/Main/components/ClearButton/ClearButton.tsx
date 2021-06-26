@@ -3,12 +3,10 @@ import { Button } from "@material-ui/core";
 
 import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { LocalStorageKeys } from "../../../../types/localStorageKeys";
+import { useMatchData } from "../../../../data/MatchContext/useMatchContext";
 
-interface Props {
-  setNameList: (values: string[]) => void;
-}
-
-const ClearButton: FC<Props> = ({ setNameList }) => {
+const ClearButton: FC = () => {
+  const { setNameList } = useMatchData();
   const { removeLocalStorage } = useLocalStorage();
 
   const onClick = () => {

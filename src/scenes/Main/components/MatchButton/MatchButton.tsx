@@ -3,13 +3,10 @@ import { Button } from "@material-ui/core";
 
 import { useMatchMaker } from "../../../../hooks/useMatchMaker";
 import { useMatchHistory } from "../../../../hooks/useMatchHistory";
+import { useMatchData } from "../../../../data/MatchContext/useMatchContext";
 
-interface Props {
-  nameList: string[];
-  setMatches: (values: string[][]) => void;
-}
-
-const MatchButton: FC<Props> = ({ nameList, setMatches }) => {
+const MatchButton: FC = () => {
+  const { nameList, setMatches } = useMatchData();
   const { getMatches } = useMatchMaker(nameList);
   const { setMatchHistory } = useMatchHistory();
 

@@ -1,0 +1,1 @@
+export { NamePair } from "./NamePair";

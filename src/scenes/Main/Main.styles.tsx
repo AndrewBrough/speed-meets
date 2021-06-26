@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: 0,
   },
+  small: {
+    fontSize: "0.9rem",
+  },
 }));
 
 export { useStyles };

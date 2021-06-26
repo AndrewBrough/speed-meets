@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
       margin: 0,
     },
   },
+  actionRow: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
   card: {
     background: colors.white,
     padding: theme.spacing(4),
@@ -22,7 +26,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "baseline",
     flexWrap: "wrap",
   },
-
   input: {
     margin: theme.spacing(2),
     marginLeft: 0,
