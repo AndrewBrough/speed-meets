@@ -1,4 +1,5 @@
 import React, { createContext, FC, useEffect, useState } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useMatchHistory } from "../../hooks/useMatchHistory";
 import { LocalStorageKeys } from "../../types/localStorageKeys";
@@ -6,8 +7,8 @@ import { LocalStorageKeys } from "../../types/localStorageKeys";
 interface MatchData {
   nameList: string[];
   setNameList: (values: string[]) => void;
-  matches: string[][];
-  setMatches: (value: string[][]) => void;
+  matches: string[][][];
+  setMatches: (value: string[][][]) => void;
 }
 
 const MatchContext = createContext<MatchData>(null);
@@ -18,7 +19,11 @@ const MatchProvider: FC = ({ children }) => {
   const [nameList, setNameList] = useState<string[]>(loadedNames || [""]);
   const { getMatchHistory } = useMatchHistory();
   const loadedMatches = loadedNames ? getMatchHistory(loadedNames) : [];
-  const [matches, setMatches] = useState<string[][]>(loadedMatches || []);
+  const [matches, setMatches] = useState<string[][][]>(loadedMatches || []);
+
+  const debouncedLoadMatches = useDebounce(nameList => {
+    setMatches(getMatchHistory(nameList) || []);
+  }, 200);
 
   // optimisation - debounce this - make it not run right after every single input change when entering names
   useEffect(() => {
@@ -34,7 +39,7 @@ const MatchProvider: FC = ({ children }) => {
       }
     }
     setLocalStorage(LocalStorageKeys.nameList, nameList);
-    setMatches(getMatchHistory(nameList) || []);
+    debouncedLoadMatches(nameList);
   }, [nameList]);
 
   const value: MatchData = {

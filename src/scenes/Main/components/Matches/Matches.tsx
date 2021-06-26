@@ -11,8 +11,6 @@ const Matches: FC = () => {
   const { matches } = useMatchData();
 
   const renderSet = (matchSet, matchIndex) => {
-    const setNames = () => {};
-
     return (
       <Grid item xs={12} md={4}>
         <Accordion defaultExpanded className={classes.accordion}>
@@ -33,12 +31,12 @@ const Matches: FC = () => {
     );
   };
 
-  const renderMatches = () => matches.map((matches, matchIndex) => renderSet(matches, matchIndex));
+  const renderSets = () => matches.map((matches, matchIndex) => renderSet(matches, matchIndex));
 
   return (
     <Box className={classes.box}>
       <Grid container spacing={2}>
-        {renderMatches()}
+        {renderSets()}
       </Grid>
     </Box>
   );
